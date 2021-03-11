@@ -13,9 +13,9 @@ class UpdateUsuarios extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) 
-        {
-            $table->year('Fecha_Nacimiento')->nullable();
+        Schema::table('users', function (Blueprint $table) {
+            $table->date('Fecha_Nacimiento')->nullable();
+            $table->string('Sexo')->nullable();
             $table->boolean('Tos_Seca')->nullable();
             $table->boolean('Fiebre')->nullable();
             $table->boolean('cansancio')->nullable();
@@ -27,7 +27,7 @@ class UpdateUsuarios extends Migration
             $table->boolean('Pérdida_De_Olfato')->nullable();
             $table->boolean('Pérdida_De_Gusto')->nullable();
             $table->boolean('Erupciones_Cutáneas')->nullable();
-            $table->boolean('Pérdida_Del_Control_En_Los_Dedos_De_Las_Manos')->nullable();
+            $table->boolean('Pérdida_Del_Control_En_Los_Dedos')->nullable();
             $table->boolean('Dificultad_Para_Respirar')->nullable();
             $table->boolean('Incapacidad_Para_Moverse')->nullable();
             $table->boolean('Dolor/Presión_En_El_Pecho')->nullable();
@@ -41,9 +41,9 @@ class UpdateUsuarios extends Migration
      */
     public function down()
     {
-        schema::table('users', function (Blueprint $table)
-        {
+        schema::table('users', function (Blueprint $table) {
             $table->dropColumn('Fecha_Nacimiento');
+            $table->dropColumn('Sexo');
             $table->dropColumn('Tos_Seca');
             $table->dropColumn('Fiebre');
             $table->dropColumn('cansancio');
@@ -59,6 +59,6 @@ class UpdateUsuarios extends Migration
             $table->dropColumn('Dificultad_Para_Respirar');
             $table->dropColumn('Incapacidad_Para_Moverse');
             $table->dropColumn('Dolor/Presión_En_El_Pecho');
-            });        
+        });
     }
 }

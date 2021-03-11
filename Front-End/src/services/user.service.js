@@ -1,14 +1,14 @@
 import axios from 'axios';
-import authHeader from './auth-header';
-import config from '@/resources/config.js';
+import authHeader from '@/services/auth-header';
+import config from '@/resources/config';
 
 class UserService {
   getPublicContent() {
-    return axios.get(API_URL + 'all');
+    return axios.get(config.API_URL + 'all');
   }
 
   getUserBoard() {
-    return axios.get(API_URL + 'me', { headers: authHeader() });
+    return axios.get(config.API_URL + 'me', { headers: authHeader() });
   }
 }
 

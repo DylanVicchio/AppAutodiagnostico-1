@@ -14,7 +14,8 @@ class AuthController extends Controller
 {
     /**
      * Create a new AuthController instance.
-     * Aca lo que hace es dar negar el acceso a las paginas a excepcion del login, register y refresh
+     * Aca lo que hace es dar o negar el acceso a las paginas a excepcion del login, 
+     * register y refresh
      * @return void
      */
     public function __construct()
@@ -36,9 +37,6 @@ class AuthController extends Controller
             'password' => 'required|string|min:6',
         ]);
 
-        //corre con: http://localhost:8000/api/auth/login?email=wenceslao&password=123456
-        $credentials = request(['email', 'password']);
-
         if ($validator->fails()) {
             return response()->json($validator->errors(), 422);
         }
@@ -46,7 +44,6 @@ class AuthController extends Controller
         if (!$token = Auth::attempt($validator->validated())) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
-
 
         return $this->respondWithToken($token);
     }

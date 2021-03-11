@@ -1,4 +1,3 @@
-
 var opciones = {
   body: 'texto',
   image: "./src/assets/imagen.png",

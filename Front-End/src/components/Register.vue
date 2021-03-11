@@ -1,8 +1,9 @@
 <template>
     <div class="Home">
+        <navbar />
         <div class="wrapper fadeInDown">
             <div id="formContent">
-                <br /><br /><br />
+                <br /> <!-- EVITAR EL USO DE BR, USAR BOOTSTRAP --><br /> <!-- EVITAR EL USO DE BR, USAR BOOTSTRAP --><br /> <!-- EVITAR EL USO DE BR, USAR BOOTSTRAP -->
                 <form>
                     <input
                         type="text"
@@ -35,18 +36,17 @@
                         name="repassword-input"
                         placeholder="Confirmar contraseña"
                     />
-                    <br />
-                    <br />
+                    <br /> <!-- EVITAR EL USO DE BR, USAR BOOTSTRAP -->
+                    <br /> <!-- EVITAR EL USO DE BR, USAR BOOTSTRAP -->
                     Sexo:
                     <select v-model="user.sex">
-                        <option>Masculino</option>
-                        <option>Femenino</option>
+                        <option>Hombre</option>
+                        <option>Mujer</option>
                         <option>Otro</option>
                     </select>
-                    <br />
-                    Fec. Nacimiento
-                    <input v-model="user.dateob" type="date" id="date" />
-                    <br />
+                    <br /> <!-- EVITAR EL USO DE BR, USAR BOOTSTRAP -->
+                    Fec. Nacimiento <input type="date" id="date" />
+                    <br /> <!-- EVITAR EL USO DE BR, USAR BOOTSTRAP -->
                     <button
                         class="btn btn-secondary fadeIn fourth"
                         @click.prevent="register"
@@ -60,12 +60,13 @@
 </template>
 
 <script>
-import Styles from "@/css/Register.css";
-import auth from "../services/auth.service";
-import User from "../models/user";
+import styles from "@/css/Register.css";
+import navbar from "@/components/Nav-no-login";
+import User from "@/models/user";
 
 export default {
     name: "register",
+    components: { navbar },
     data() {
         return {
             user: new User("", "", ""),
@@ -96,19 +97,17 @@ export default {
             //this.$validator.validate().then((isValid) => {
             //if (isValid) {
             this.$store.dispatch("auth/register", this.user).then(
-                data => {
+                (data) => {
                     this.message = data.message;
                     this.successful = true;
-                    console.log(this.message);
                     this.$router.push("/login");
                 },
-                error => {
+                (error) => {
                     this.message =
                         (error.response && error.response.data) ||
                         error.message ||
                         error.toString();
                     this.successful = false;
-                    console.log(this.message);
                 }
             );
             //}

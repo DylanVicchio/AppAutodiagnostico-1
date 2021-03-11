@@ -18,16 +18,13 @@ class Controller extends BaseController
      * necesita que le pases un ...
      */
 
-    function nombre(){
+    function nombre()
+    {
 
-        $nombre =  DB::table('personas')->where('nombre','diego')->first();
+        $nombre =  DB::table('personas')->where('nombre', 'diego')->first();
         //DB::raw('select * from pruebaaxios where nombre = diego', [1]);
         return $nombre;
-
     }
-
-
-
 }
 /**
  * armamos la migracion

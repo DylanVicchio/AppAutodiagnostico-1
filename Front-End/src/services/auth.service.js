@@ -1,5 +1,5 @@
 import axios from 'axios';
-import config from '@/resources/config.js';
+import config from '@/resources/config';
 
 class AuthService {
   login(user) {

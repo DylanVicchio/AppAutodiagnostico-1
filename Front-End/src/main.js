@@ -28,14 +28,6 @@ Vue.config.productionTip = false;
 Vue.use(VeeValidate);
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 
-/*
-new Vue({
-  router,
-  store,
-  render: h => h(App)
-}).$mount('#app');
-*/
-
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 Vue.use(VueAxios, axios)
@@ -45,7 +37,6 @@ Vue.use(VueRouter)
 
 Vue.config.productionTip = false
 
-/* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,

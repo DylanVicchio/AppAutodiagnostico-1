@@ -1,5 +1,6 @@
 <template>
     <div class="Home">
+        <navbar />
         <div class="wrapper fadeInDown">
             <h2>Recupera tu cuenta</h2>
             <form>
@@ -15,7 +16,7 @@
             <input
                 type="submit"
                 class="fadeIn fourth"
-                v-on:click="recuperar"
+                @click.prevent="recuperar"
                 value="Aceptar"
             />
         </div>
@@ -23,13 +24,17 @@
 </template>
 
 <script>
-import Styles from '@/css/Password.css'
+import styles from "@/css/Password.css";
+import navbar from "@/components/Nav-no-login";
+
 export default {
     name: "home",
+    components: { navbar },
 
     methods: {
         recuperar: function () {
-            //  Codigo para logearse
+            // TODO
+            //  Codigo para recuperar contraseña
         },
     },
 };

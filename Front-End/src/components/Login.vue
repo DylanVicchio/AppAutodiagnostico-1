@@ -1,16 +1,9 @@
 <template>
     <div class="Home">
-        <header>
-            <nav>
-                <div class="menu-item">
-                    <router-link to="/"><a href="#">Login</a></router-link>
-                </div>
-            </nav>
-        </header>
-        <ventanaerror />
+        <navbar />
         <div class="wrapper fadeInDown">
             <div id="formContent">
-                <br /><br /><br />
+                <br /> <!-- EVITAR EL USO DE BR, USAR BOOTSTRAP --><br /> <!-- EVITAR EL USO DE BR, USAR BOOTSTRAP --><br /> <!-- EVITAR EL USO DE BR, USAR BOOTSTRAP -->
                 <form>
                     <input
                         type="text"
@@ -18,6 +11,7 @@
                         class="fadeIn second"
                         name="login"
                         placeholder="Correo Electronico"
+                        required
                         v-model="user.email"
                     />
                     <input
@@ -27,7 +21,13 @@
                         name="password"
                         placeholder="Contraseña"
                         v-model="user.password"
+                        required
+                        minlength="8"
                     />
+                    <abbr
+                        title="Este campo es obligatorio"
+                        aria-label="required"
+                    ></abbr>
                     <input
                         type="submit"
                         class="fadeIn fourth"
@@ -43,10 +43,13 @@
                 </form>
                 <!-- Remind Passowrd -->
                 <div id="formFooter">
-                    <a class="underlineHover" href="#" v-on:click="password">
+                    <a
+                        class="underlineHover"
+                        href="#"
+                        @click.prevent="password"
+                    >
                         Forgot Password?
                     </a>
-                    <div id="components-demo"></div>
                 </div>
             </div>
         </div>
@@ -54,15 +57,14 @@
 </template>
 
 <script>
-import Styles from "@/css/Login.css";
-import ventanaerror from "./VentanaError";
-import auth from "../services/auth.service";
-import User from "../models/user";
+import styles from "@/css/Login.css";
+import navbar from "@/components/Nav-no-login";
+import User from "@/models/user";
 
 export default {
     name: "login",
     components: {
-        ventanaerror,
+        navbar,
     },
     data() {
         return {
@@ -78,7 +80,7 @@ export default {
     },
     created() {
         if (this.loggedIn) {
-            this.$router.push("/diagnostico");
+            this.$router.push("/about");
         }
     },
     //mounted: function () {},
@@ -94,7 +96,7 @@ export default {
             if (this.user.email && this.user.password) {
                 this.$store.dispatch("auth/login", this.user).then(
                     () => {
-                        this.$router.push("/diagnostico")
+                        this.$router.push("/diagnostico");
                     },
                     (error) => {
                         //this.loading = false;
@@ -102,7 +104,6 @@ export default {
                             (error.response && error.response.data) ||
                             error.message ||
                             error.toString();
-                        console.log(message);
                     }
                 );
             }
