@@ -27,6 +27,12 @@ class AuthService {
       password: user.password
     });
   }
+
+  password(mail) {
+    return axios.post(config.JWT_URL + 'reset/password', {
+      email: mail,
+    });
+  }
 }
 
 export default new AuthService();

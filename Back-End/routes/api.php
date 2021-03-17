@@ -28,6 +28,12 @@ Route::group(
         Route::post('logout', 'AuthController@logout');
         Route::post('refresh', 'AuthController@refresh');
         Route::post('user', 'AuthController@me');
+
+        // Send reset password mail
+        Route::post('reset-password', 'AuthController@sendPasswordResetLink');
+        
+        // handle reset password form process
+        Route::post('reset/password', 'AuthController@callResetPassword');
     }
 );
 

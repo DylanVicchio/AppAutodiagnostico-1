@@ -25,6 +25,21 @@ class Controller extends BaseController
         //DB::raw('select * from pruebaaxios where nombre = diego', [1]);
         return $nombre;
     }
+
+    /**
+     * Reset the given user's password.
+     *
+     * @param  \Illuminate\Contracts\Auth\CanResetPassword  $user
+     * @param  string  $password
+     * @return void
+     */
+    public function resetPassword($user, $password)
+    {
+        $user->password = Hash::make($password);
+        $user->save();
+
+        event(new Password($user));
+    }
 }
 /**
  * armamos la migracion

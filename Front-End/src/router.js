@@ -6,7 +6,8 @@ import Register from '@/components/Register'
 import Diagnostico from '@/components/Diagnostico'
 import About from '@/components/About'
 import Home from '@/components/Home'
-import Password from '@/components/Password'
+import ForgotPassword from '@/components/Password'
+import ResetPasswordForm from '@/components/ResetPasswordForm'
 
 Vue.use(Router);
 
@@ -29,11 +30,7 @@ export const router = new Router({
       name: 'Home',
       component: Home
     },
-    {
-      path: '/password',
-      name: 'Password',
-      component: Password
-    },
+
     // Requieren autenticacion
     {
       path: '/diagnostico',
@@ -50,8 +47,24 @@ export const router = new Router({
       path: '*',
       name: 'Anything',
       component: Login
+    },
+    { 
+      path: '/password', 
+      name: 'password', 
+      component: ForgotPassword, 
+      meta: { 
+        auth:false 
+      } 
+    },
+    { 
+      path: '/reset-password/:token', 
+      name: 'reset-password-form', 
+      component: ResetPasswordForm, 
+      meta: { 
+        auth:false 
+      } 
     }
-  ]
+]
 })
 
 router.beforeEach((to, from, next) => {

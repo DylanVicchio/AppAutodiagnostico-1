@@ -16,9 +16,9 @@
             <input
                 type="submit"
                 class="fadeIn fourth"
-                @click.prevent="recuperar"
+                @click.prevent="requestResetPassword"
                 value="Aceptar"
-            />
+          />
         </div>
     </div>
 </template>
@@ -30,12 +30,21 @@ import navbar from "@/components/Nav-no-login";
 export default {
     name: "home",
     components: { navbar },
-
-    methods: {
-        recuperar: function () {
-            // TODO
-            //  Codigo para recuperar contraseña
-        },
+    data() {
+      return {
+        email: null,
+        has_error: false
+      }
     },
-};
+    methods: {
+        requestResetPassword() {
+            this.$store.dispatch("auth/password", this.email).then(result => {
+                this.response = result.data;
+                console.log(result.data);
+            }, error => {
+                console.error(error);
+            });
+        }
+    }
+}
 </script>
